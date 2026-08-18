@@ -1,6 +1,6 @@
 {
   "name": "push-receiver-v2",
-  "version": "2.2.0",
+  "version": "2.2.1-sioslife.0",
   "description":
     "A module to subscribe to GCM/FCM and receive notifications within a node process. v2 is compatible with the latest FCM registration endpoints.",
   "main": "src/index.js",
@@ -9,24 +9,24 @@
     "register": "node scripts/register",
     "send": "node scripts/send",
     "pretty":
+      "prettier-eslint --single-quote --trailing-comma es5 --list-different \"**/*.js\" \"**/*.json\"",
+    "pretty:fix":
       "prettier-eslint --single-quote --trailing-comma es5 --write \"**/*.js\" \"**/*.json\"",
-    "pretty:check":
-      "prettier-eslint --single-quote --trailing-comma es5 --list-different --log-level silent \"**/*.js\" \"**/*.json\"",
     "lint": "eslint 'src/**/*.js'",
     "lint:fix": "eslint 'src/**/*.js' --fix",
     "test": "jest",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "clean": "rm -rf node_modules"
   },
   "lint-staged": {
     "*.js": [
       "eslint --fix",
       "prettier-eslint --single-quote --trailing-comma es5 --write"
-    ],
-    "*.json": ["prettier-eslint --single-quote --trailing-comma es5 --write"]
+    ]
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/javajuice1337/push-receiver-v2.git"
+    "url": "git+ssh://git@github.com/Hidepixel/push-receiver-v2.git"
   },
   "keywords": [
     "push",
@@ -41,9 +41,9 @@
   "author": "javajuice1337",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/javajuice1337/push-receiver-v2/issues"
+    "url": "https://github.com/Hidepixel/push-receiver-v2/issues"
   },
-  "homepage": "https://github.com/javajuice1337/push-receiver-v2#readme",
+  "homepage": "https://github.com/Hidepixel/push-receiver-v2#readme",
   "devDependencies": {
     "babel-eslint": "^7.2.3",
     "eslint": "^4.4.1",
@@ -52,7 +52,7 @@
     "husky": "^0.14.3",
     "jest": "^22.2.2",
     "lint-staged": "^6.1.0",
-    "prettier": "^1.6.1",
+    "prettier": "^1.13.7",
     "prettier-eslint": "^7.0.0",
     "prettier-eslint-cli": "^4.3.0",
     "yargs": "^10.0.3"

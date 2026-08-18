@@ -1,3 +1,13 @@
+## Hidepixel fork 2026
+
+This fork contains a targeted fix for an Electron FCM issue in the upstream package. Composite Web Push `Crypto-Key` and `Encryption` headers were parsed using fixed offsets, which could cause valid notifications to fail with `ERR_CRYPTO_ECDH_INVALID_PUBLIC_KEY`.
+
+The fix parses `dh` and `salt` parameters by name, preserves `=` characters in Base64 values, and prevents malformed notification payloads from becoming uncaught process exceptions. Regression tests cover these cases.
+
+See more information in the [Sioslife investigation](docs/electron-fcm-invalid-public-key.md).
+
+---
+
 > [!WARNING]
 > This library is no longer functioning since September 2024, and is not maintained. Use this instead: https://github.com/liamcottle/push-receiver
 

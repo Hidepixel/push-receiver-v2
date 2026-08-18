@@ -136,15 +136,15 @@ module.exports = class Client extends EventEmitter {
   }
 
   _onSocketClose() {
-    this.emit('disconnect')
+    this.emit('disconnect');
     this._retry();
   }
 
-  _onSocketError(error) {
+  _onSocketError() {
     // ignore, the close handler takes care of retry
   }
 
-  _onParserError(error) {
+  _onParserError() {
     this._retry();
   }
 
@@ -178,7 +178,14 @@ module.exports = class Client extends EventEmitter {
           'Unsupported state or unable to authenticate data'
         ):
         case error.message.includes('crypto-key is missing'):
+        case error.message.includes(
+          'crypto-key header is missing dh parameter'
+        ):
         case error.message.includes('salt is missing'):
+        case error.message.includes(
+          'encryption header is missing salt parameter'
+        ):
+        case error.code === 'ERR_CRYPTO_ECDH_INVALID_PUBLIC_KEY':
           // NOTE(ibash) Periodically we're unable to decrypt notifications. In
           // all cases we've been able to receive future notifications using the
           // same keys. So, we silently drop this notification.
